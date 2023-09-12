@@ -3,7 +3,6 @@
 import { Form, Formik } from "formik";
 
 import { schema } from "@/schemas/index";
-import PocketBase from "pocketbase";
 import pb from "@/lib/pocketbase";
 // import { createUser } from "@/actions/index";
 
@@ -12,7 +11,6 @@ import CustomPasswordInput from "./CustomPasswordInput";
 import CustomCheckbox from "./CustomCheckbox";
 
 const onSubmit = async (values, actions) => {
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log(values);
 
   const enteredEmail = values.email;
@@ -26,7 +24,6 @@ const onSubmit = async (values, actions) => {
   };
 
   try {
-    console.log("przed create");
     const record = await pb.collection("users").create(data);
 
     console.log("record ", record);
