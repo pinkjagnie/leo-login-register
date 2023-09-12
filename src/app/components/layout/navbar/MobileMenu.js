@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
+import useLogout from "@/hooks/useLogout";
+
 import { CgMenuRound, CgCloseO } from "react-icons/cg";
 
 const MobileMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const logout = useLogout();
 
   const hamburgerIcon = (
     <CgMenuRound
@@ -23,6 +26,11 @@ const MobileMenu = () => {
   );
 
   const closeMenu = () => setOpenMenu(false);
+
+  const logoutHandler = () => {
+    logout();
+    closeMenu();
+  };
 
   return (
     <div className="lg:hidden">
@@ -52,9 +60,7 @@ const MobileMenu = () => {
               </Link>
             </li>
             <li className="my-6">
-              <Link href="/" onClick={() => closeMenu()}>
-                Logout
-              </Link>
+              <button onClick={logoutHandler}>Logout</button>
             </li>
           </ul>
         </div>

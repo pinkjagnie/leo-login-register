@@ -1,6 +1,10 @@
 import Link from "next/link";
 
+import useLogout from "@/hooks/useLogout";
+
 const DesktopMenu = () => {
+  const logout = useLogout();
+
   return (
     <div className="flex-none hidden lg:visible lg:block">
       <ul className="menu menu-horizontal px-1 font-medium">
@@ -14,7 +18,7 @@ const DesktopMenu = () => {
           <Link href="/protected">Protected</Link>
         </li>
         <li>
-          <Link href="/">Logout</Link>
+          <button onClick={logout}>Logout</button>
         </li>
       </ul>
     </div>
