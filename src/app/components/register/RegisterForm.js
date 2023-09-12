@@ -60,6 +60,9 @@ const RegisterForm = () => {
           I accept the terms of service
         </label>
       </div>
+      <button type="submit" className="btn btn-outline">
+        Create an account
+      </button>
     </form>
   );
 };
