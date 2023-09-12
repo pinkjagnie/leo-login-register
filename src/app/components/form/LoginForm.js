@@ -3,32 +3,24 @@
 import { Form, Formik } from "formik";
 
 import { loginSchema } from "@/schemas/index";
-import pb from "@/lib/pocketbase";
+import useLogin from "@/hooks/useLogin";
 // import { createUser } from "@/actions/index";
 
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-
-  const enteredEmail = values.email;
-  const enteredPass = values.password;
-  try {
-    const authData = await pb
-      .collection("users")
-      .authWithPassword(enteredEmail, enteredPass);
-
-    console.log(authData);
-    console.log(pb.authStore.isValid);
-
-    actions.resetForm();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const LoginForm = () => {
+  const login = useLogin();
+
+  const onSubmit = (values, actions) => {
+    console.log(values);
+
+    const enteredEmail = values.email;
+    const enteredPass = values.password;
+
+    login(enteredEmail, enteredPass, actions);
+  };
+
   return (
     <Formik
       initialValues={{
