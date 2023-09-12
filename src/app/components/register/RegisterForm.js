@@ -17,17 +17,25 @@ const onSubmit = async (values, actions) => {
 
   const pb = new PocketBase("http://127.0.0.1:8090");
 
+  const enteredEmail = values.email;
+  const enteredPass = values.password;
+  const enteredConfirmPass = values.confirmPassword;
+
   const data = {
-    email: values.email,
-    password: values.password,
-    passwordConfirm: values.passwordConfirm,
+    email: enteredEmail,
+    password: enteredPass,
+    passwordConfirm: enteredConfirmPass,
   };
 
-  const record = await pb.collection("users").create(data);
+  try {
+    console.log("przed create");
+    const record = await pb.collection("users").create(data);
 
-  console.log(record);
-
-  actions.resetForm();
+    console.log("record ", record);
+    actions.resetForm();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const RegisterForm = () => {
