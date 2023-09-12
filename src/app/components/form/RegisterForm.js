@@ -6,9 +6,9 @@ import { schema } from "@/schemas/index";
 import pb from "@/lib/pocketbase";
 // import { createUser } from "@/actions/index";
 
-import CustomInput from "./CustomInput";
-import CustomPasswordInput from "./CustomPasswordInput";
-import CustomCheckbox from "./CustomCheckbox";
+import CustomInput from "./custom/CustomInput";
+import CustomPasswordInput from "./custom/CustomPasswordInput";
+import CustomCheckbox from "./custom/CustomCheckbox";
 
 const onSubmit = async (values, actions) => {
   console.log(values);
