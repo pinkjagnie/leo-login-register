@@ -48,10 +48,17 @@ const RegisterForm = () => {
       {({ isSubmitting }) => (
         <Form className="form-control w-[90%] md:w-[60%] p-6 mx-auto">
           <CustomInput label="Email" name="email" type="email" />
-          <CustomPasswordInput label="Password" name="password" />
+          <CustomPasswordInput
+            label="Password"
+            name="password"
+            info="Password must be at least 8 characters long, contain one capital letter,
+        one number and one special character"
+          />
           <CustomPasswordInput
             label="Confirm password"
             name="confirmPassword"
+            info="Password must be at least 8 characters long, contain one capital letter,
+            one number and one special character"
           />
           <CustomCheckbox
             type="checkbox"

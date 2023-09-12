@@ -3,7 +3,7 @@ import { useField } from "formik";
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
-const CustomPasswordInput = ({ label, ...props }) => {
+const CustomPasswordInput = ({ info, label, ...props }) => {
   const [field, meta] = useField(props);
 
   // visibility of password
@@ -42,10 +42,7 @@ const CustomPasswordInput = ({ label, ...props }) => {
           {eyeIcon}
         </span>
       </div>
-      <p className="w-[95%] mx-auto pt-2 text-xs italic">
-        Password must be at least 8 characters long, contain one capital letter,
-        one number and one special character
-      </p>
+      {info && <p className="w-[95%] mx-auto pt-2 text-xs italic">{info}</p>}
       {meta.error && meta.touched && (
         <p className="pt-2 text-sm text-rose-600">{meta.error}</p>
       )}
