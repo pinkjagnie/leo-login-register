@@ -9,10 +9,23 @@ import pb from "@/lib/pocketbase";
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";
 
-const onSubmit = (values, actions) => {
+const onSubmit = async (values, actions) => {
   console.log(values);
 
-  actions.resetForm();
+  const enteredEmail = values.email;
+  const enteredPass = values.password;
+  try {
+    const authData = await pb
+      .collection("users")
+      .authWithPassword(enteredEmail, enteredPass);
+
+    console.log(authData);
+    console.log(pb.authStore.isValid);
+
+    actions.resetForm();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const LoginForm = () => {
