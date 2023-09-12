@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/layout/navbar/Navbar";
+import Footer from "./components/layout/Footer";
 
 export const metadata = {
   title: "TornadoX - share your thoughts",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

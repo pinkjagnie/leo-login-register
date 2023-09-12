@@ -31,11 +31,11 @@ const MobileMenu = () => {
         <div
           className={
             openMenu
-              ? "absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center w-full h-screen meny bg-base-200 text-center ease-in duration-300"
-              : "sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex flex-col justify-center items-center w-full h-screen text-center ease-in duration-300"
+              ? "absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center w-full h-screen menu bg-base-200 text-center ease-in duration-300"
+              : "sm:hidden absolute top-0 left-[-100%] ease-in duration-300"
           }
         >
-          <ul className="w-56 font-medium text-xl">
+          <ul className="w-[100%] font-medium text-xl">
             <li>
               <Link href="/register" onClick={() => closeMenu()}>
                 Register
