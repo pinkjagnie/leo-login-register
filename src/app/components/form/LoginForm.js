@@ -2,74 +2,45 @@
 
 import { Form, Formik } from "formik";
 
-import { registerSchema } from "@/schemas/index";
+import { loginSchema } from "@/schemas/index";
 import pb from "@/lib/pocketbase";
 // import { createUser } from "@/actions/index";
 
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";
-import CustomCheckbox from "./custom/CustomCheckbox";
 
-const onSubmit = async (values, actions) => {
+const onSubmit = (values, actions) => {
   console.log(values);
 
-  const enteredEmail = values.email;
-  const enteredPass = values.password;
-  const enteredConfirmPass = values.confirmPassword;
-
-  const data = {
-    email: enteredEmail,
-    password: enteredPass,
-    passwordConfirm: enteredConfirmPass,
-  };
-
-  try {
-    const record = await pb.collection("users").create(data);
-
-    console.log("record ", record);
-    actions.resetForm();
-  } catch (error) {
-    console.log(error);
-  }
+  actions.resetForm();
 };
 
-const RegisterForm = () => {
+const LoginForm = () => {
   return (
     <Formik
       initialValues={{
         email: "",
         password: "",
-        confirmPassword: "",
-        acceptedTOS: false,
       }}
-      validationSchema={registerSchema}
+      validationSchema={loginSchema}
       onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form className="form-control w-[90%] md:w-[60%] p-6 mx-auto">
           <CustomInput label="Email" name="email" type="email" />
           <CustomPasswordInput label="Password" name="password" />
-          <CustomPasswordInput
-            label="Confirm password"
-            name="confirmPassword"
-          />
-          <CustomCheckbox
-            type="checkbox"
-            name="acceptedTOS"
-            label="I accept the terms of service"
-          />
           {!isSubmitting ? (
             <button
               disabled={isSubmitting}
               type="submit"
               className="btn btn-outline"
             >
-              Create an account
+              Login
             </button>
           ) : (
             <button className="btn btn-active btn-accent text-slate-50">
               <span className="loading loading-spinner text-slate-50"></span>
-              Submitting
+              Please wait
             </button>
           )}
         </Form>
@@ -78,4 +49,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
