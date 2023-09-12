@@ -5,7 +5,7 @@ const Drawer = ({ openDrawer, toggleDrawer }) => {
     <div
       className={
         openDrawer
-          ? "fixed top-0 left-0 w-full md:w-[50%] lg:w-[30%] flex flex-col justify-center items-center h-screen bg-base-200 text-center ease-in duration-200"
+          ? "fixed top-0 left-0 w-full md:w-[50%] lg:w-[30%] flex flex-col justify-center items-center h-screen bg-base-200 text-center ease-in duration-200 z-40"
           : "fixed top-0 left-[-100%] ease-in"
       }
     >
