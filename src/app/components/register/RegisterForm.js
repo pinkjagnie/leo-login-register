@@ -3,14 +3,30 @@
 import { Form, Formik } from "formik";
 
 import { schema } from "@/schemas/index";
+import PocketBase from "pocketbase";
+// import pb from "@/lib/pocketbase";
+// import { createUser } from "@/actions/index";
 
 import CustomInput from "./CustomInput";
 import CustomPasswordInput from "./CustomPasswordInput";
 import CustomCheckbox from "./CustomCheckbox";
 
 const onSubmit = async (values, actions) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log(values);
+
+  const pb = new PocketBase("http://127.0.0.1:8090");
+
+  const data = {
+    email: values.email,
+    password: values.password,
+    passwordConfirm: values.passwordConfirm,
+  };
+
+  const record = await pb.collection("users").create(data);
+
+  console.log(record);
+
   actions.resetForm();
 };
 
