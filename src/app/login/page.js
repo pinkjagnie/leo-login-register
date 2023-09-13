@@ -1,4 +1,4 @@
-import LoginForm from "../components/form/LoginForm";
+import Login from "../components/form/Login";
 
 const Page = () => {
   return (
@@ -6,7 +6,7 @@ const Page = () => {
       <h1 className="py-4 text-xl text-center font-bold">
         Login to your account
       </h1>
-      <LoginForm />
+      <Login />
     </section>
   );
 };

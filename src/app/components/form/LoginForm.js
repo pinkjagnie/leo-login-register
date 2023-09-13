@@ -3,24 +3,12 @@
 import { Form, Formik } from "formik";
 
 import { loginSchema } from "@/schemas/index";
-import useLogin from "@/hooks/useLogin";
 // import { createUser } from "@/actions/index";
 
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";
 
-const LoginForm = () => {
-  const login = useLogin();
-
-  const onSubmit = async (values, actions) => {
-    console.log(values);
-
-    const enteredEmail = values.email;
-    const enteredPass = values.password;
-
-    await login(enteredEmail, enteredPass, actions);
-  };
-
+const LoginForm = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{

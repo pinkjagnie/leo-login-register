@@ -6,22 +6,16 @@ export default function useLogin() {
   const router = useRouter();
 
   async function login(email, password, actions) {
-    try {
-      const authData = await pb
-        .collection("users")
-        .authWithPassword(email, password);
+    const authData = await pb
+      .collection("users")
+      .authWithPassword(email, password);
 
-      console.log(authData);
-      console.log(pb.authStore.isValid);
+    console.log("authdata ", authData);
+    console.log(pb.authStore.isValid);
 
-      actions.resetForm();
+    actions.resetForm();
 
-      router.push("/");
-
-      return authData;
-    } catch (error) {
-      console.log(error);
-    }
+    router.push("/");
   }
 
   return login;
