@@ -2,12 +2,14 @@ import { useState } from "react";
 import Link from "next/link";
 
 import useLogout from "@/hooks/useLogout";
+import useLogged from "@/hooks/useLogged";
 
 import { CgMenuRound, CgCloseO } from "react-icons/cg";
 
 const MobileMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const logout = useLogout();
+  const { isLogged } = useLogged();
 
   const hamburgerIcon = (
     <CgMenuRound
@@ -44,16 +46,20 @@ const MobileMenu = () => {
           }
         >
           <ul className="w-[100%] font-medium text-xl">
-            <li>
-              <Link href="/register" onClick={() => closeMenu()}>
-                Register
-              </Link>
-            </li>
-            <li className="my-6">
-              <Link href="/login" onClick={() => closeMenu()}>
-                Login
-              </Link>
-            </li>
+            {!isLogged && (
+              <li>
+                <Link href="/register" onClick={() => closeMenu()}>
+                  Register
+                </Link>
+              </li>
+            )}
+            {!isLogged && (
+              <li className="my-6">
+                <Link href="/login" onClick={() => closeMenu()}>
+                  Login
+                </Link>
+              </li>
+            )}
             <li className="my-6">
               <Link href="/protected" onClick={() => closeMenu()}>
                 Protected
