@@ -3,37 +3,13 @@
 import { Form, Formik } from "formik";
 
 import { registerSchema } from "@/schemas/index";
-import pb from "@/lib/pocketbase";
 // import { createUser } from "@/actions/index";
 
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";
 import CustomCheckbox from "./custom/CustomCheckbox";
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-
-  const enteredEmail = values.email;
-  const enteredPass = values.password;
-  const enteredConfirmPass = values.confirmPassword;
-
-  const data = {
-    email: enteredEmail,
-    password: enteredPass,
-    passwordConfirm: enteredConfirmPass,
-  };
-
-  try {
-    const record = await pb.collection("users").create(data);
-
-    console.log("record ", record);
-    actions.resetForm();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{

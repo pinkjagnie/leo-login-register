@@ -17,6 +17,8 @@ export default function useLogin() {
       actions.resetForm();
 
       router.push("/");
+
+      return authData;
     } catch (error) {
       console.log(error);
     }
