@@ -12,13 +12,13 @@ import CustomPasswordInput from "./custom/CustomPasswordInput";
 const LoginForm = () => {
   const login = useLogin();
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = async (values, actions) => {
     console.log(values);
 
     const enteredEmail = values.email;
     const enteredPass = values.password;
 
-    login(enteredEmail, enteredPass, actions);
+    await login(enteredEmail, enteredPass, actions);
   };
 
   return (
