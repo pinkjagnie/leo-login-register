@@ -65,9 +65,11 @@ const MobileMenu = () => {
                 Protected
               </Link>
             </li>
-            <li className="my-6">
-              <button onClick={logoutHandler}>Logout</button>
-            </li>
+            {isLogged && (
+              <li className="my-6">
+                <button onClick={logoutHandler}>Logout</button>
+              </li>
+            )}
           </ul>
         </div>
       )}

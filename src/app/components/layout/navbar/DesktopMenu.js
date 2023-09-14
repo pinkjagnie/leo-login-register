@@ -23,9 +23,11 @@ const DesktopMenu = () => {
         <li>
           <Link href="/protected">Protected</Link>
         </li>
-        <li>
-          <button onClick={logout}>Logout</button>
-        </li>
+        {isLogged && (
+          <li>
+            <button onClick={logout}>Logout</button>
+          </li>
+        )}
       </ul>
     </div>
   );

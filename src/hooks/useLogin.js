@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+// import { useQuery } from "react-query";
 
 import pb from "@/lib/pocketbase";
 
@@ -17,6 +18,11 @@ export default function useLogin() {
 
     router.push("/");
   }
+
+  // return useQuery(
+  // { queryFn: login, queryKey: ["login"] }
+  // { refetchOnMount: true }
+  // );
 
   return login;
 }
