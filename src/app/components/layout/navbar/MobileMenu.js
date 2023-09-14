@@ -3,14 +3,12 @@ import Link from "next/link";
 
 import { useAuth } from "@/context/AuthContext";
 import useLogout from "@/hooks/useLogout";
-import useLogged from "@/hooks/useLogged";
 
 import { CgMenuRound, CgCloseO } from "react-icons/cg";
 
 const MobileMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const logout = useLogout();
-  // const { isLogged } = useLogged();
   const { isLoggedIn } = useAuth();
 
   const hamburgerIcon = (

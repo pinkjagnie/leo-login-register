@@ -1,12 +1,10 @@
 import Link from "next/link";
 
 import useLogout from "@/hooks/useLogout";
-import useLogged from "@/hooks/useLogged";
 import { useAuth } from "@/context/AuthContext";
 
 const DesktopMenu = () => {
   const logout = useLogout();
-  // const { isLogged } = useLogged();
   const { isLoggedIn } = useAuth();
 
   return (
