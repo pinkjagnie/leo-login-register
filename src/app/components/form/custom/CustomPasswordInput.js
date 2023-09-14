@@ -31,7 +31,7 @@ const CustomPasswordInput = ({ info, label, ...props }) => {
           {...field}
           {...props}
           type={passwordType}
-          className={`input-ghost w-[100%] bg-slate-50 border-b ${
+          className={`input input-bordered w-full bg-slate-50 border-b ${
             meta.error && meta.touched ? "border-rose-500" : "border-gray-900"
           }`}
         />
