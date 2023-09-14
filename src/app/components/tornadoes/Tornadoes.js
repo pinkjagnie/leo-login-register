@@ -3,6 +3,10 @@
 import Link from "next/link";
 import useLogged from "@/hooks/useLogged";
 
+import TornadoesHero from "./TornadoesHero";
+
+import { WiTornado } from "react-icons/wi";
+
 const Tornadoes = () => {
   const { isLogged, userData } = useLogged();
 
@@ -12,10 +16,13 @@ const Tornadoes = () => {
 
   if (isLogged) {
     logContent = (
-      <p>
-        Hello, dear {userData.email}. Below you can see and manage your
-        tornadoes
-      </p>
+      <>
+        <p>
+          Hello, dear {userData.email}. Below you can see and manage your
+          tornadoes
+        </p>
+        <TornadoesHero />
+      </>
     );
   } else {
     logContent = (
@@ -31,7 +38,13 @@ const Tornadoes = () => {
   }
 
   return (
-    <div className="text-center font-medium text-lg py-4">{logContent}</div>
+    <>
+      <div className="text-center font-medium text-lg py-4">{logContent}</div>
+      <WiTornado
+        size={500}
+        className="hidden md:visible md:block md:absolute right-4 bottom-4 lg:right-2 lg:bottom-2 opacity-30 lg:h-[250px] lg:w-[auto]"
+      />
+    </>
   );
 };
 
