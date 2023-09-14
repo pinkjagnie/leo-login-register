@@ -18,14 +18,10 @@ const AddTornadoForm = () => {
   const onSubmit = async (values, actions) => {
     console.log(values);
 
-    const formData = new FormData();
-    const enteredAtt = formData.append("Attachment", values.Attachment);
-    console.log("formdata ", formData);
-
     const enteredTitle = values.Title;
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
-    // const enteredAtt = "";
+    const enteredAtt = values.Attachment;
 
     console.log(enteredAtt);
 
