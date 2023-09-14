@@ -5,12 +5,18 @@ const TornadoesHero = () => {
     <div className="w-[90%] mx-auto py-10">
       <p className="text-medium">What are you thinking about?</p>
       <div className="flex items-center justify-center gap-8 flex-col md:flex-row w-[90%] mx-auto py-8">
-        <button className="btn btn-secondary w-[80%] md:w-[40%]">
+        <Link
+          href="/tornadoes/see"
+          className="btn btn-secondary w-[80%] md:w-[40%]"
+        >
           See your tornadoes
-        </button>
-        <button className="btn btn-accent w-[80%] md:w-[40%]">
+        </Link>
+        <Link
+          href="/tornadoes/add"
+          className="btn btn-accent w-[80%] md:w-[40%]"
+        >
           Add new tornado
-        </button>
+        </Link>
       </div>
     </div>
   );
