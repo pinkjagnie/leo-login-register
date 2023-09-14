@@ -1,9 +1,11 @@
 import { useRouter } from "next/navigation";
 // import { useQuery } from "react-query";
+import { useAuth } from "@/context/AuthContext";
 
 import pb from "@/lib/pocketbase";
 
 export default function useLogin() {
+  const { setIsLoggedIn } = useAuth();
   const router = useRouter();
 
   async function login(email, password, actions) {
@@ -15,6 +17,8 @@ export default function useLogin() {
     console.log(pb.authStore.isValid);
 
     actions.resetForm();
+
+    setIsLoggedIn(true);
 
     router.push("/");
   }

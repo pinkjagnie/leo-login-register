@@ -2,20 +2,22 @@ import Link from "next/link";
 
 import useLogout from "@/hooks/useLogout";
 import useLogged from "@/hooks/useLogged";
+import { useAuth } from "@/context/AuthContext";
 
 const DesktopMenu = () => {
   const logout = useLogout();
-  const { isLogged } = useLogged();
+  // const { isLogged } = useLogged();
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className="flex-none hidden lg:visible lg:block">
       <ul className="menu menu-horizontal px-1 font-medium">
-        {!isLogged && (
+        {!isLoggedIn && (
           <li>
             <Link href="/login">Login</Link>
           </li>
         )}
-        {!isLogged && (
+        {!isLoggedIn && (
           <li>
             <Link href="/register">Register</Link>
           </li>
@@ -23,7 +25,7 @@ const DesktopMenu = () => {
         <li>
           <Link href="/protected">Protected</Link>
         </li>
-        {isLogged && (
+        {isLoggedIn && (
           <li>
             <button onClick={logout}>Logout</button>
           </li>
