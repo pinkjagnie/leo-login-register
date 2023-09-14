@@ -6,7 +6,7 @@ const CustomCheckbox = ({ label, ...props }) => {
   return (
     <>
       <div className="pb-6 flex items-center justify-start">
-        <input {...field} {...props} className="checkbox" />
+        <input {...field} {...props} className="checkbox bg-stone-100" />
         <label className="label-text cursor-pointer pl-2">{label}</label>
       </div>
       {meta.error && meta.touched && (
