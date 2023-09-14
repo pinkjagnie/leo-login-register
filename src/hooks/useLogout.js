@@ -1,5 +1,4 @@
 import { useRouter } from "next/navigation";
-// import { useQuery } from "react-query";
 import { useAuth } from "@/context/AuthContext";
 
 import pb from "@/lib/pocketbase";
@@ -18,11 +17,6 @@ export default function useLogout() {
     // redirecting
     router.push("/");
   }
-
-  // return useQuery(
-  // { queryFn: logout, queryKey: ["logout"] }
-  // { refetchOnMount: true }
-  // );
 
   return logout;
 }
