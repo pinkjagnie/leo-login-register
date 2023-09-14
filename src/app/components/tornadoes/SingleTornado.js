@@ -26,7 +26,10 @@ const SingleTornado = ({ id, userID, title, shortMsg, msg }) => {
           >
             <AiOutlineDelete size={25} />
           </button>
-          <Link href="/tornadoes/edit" className="btn btn-square btn-info">
+          <Link
+            href={`/tornadoes/edit/${id}`}
+            className="btn btn-square btn-info"
+          >
             <AiOutlineEdit size={25} />
           </Link>
         </div>

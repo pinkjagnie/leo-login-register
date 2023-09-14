@@ -13,8 +13,6 @@ const SeeTornadoes = () => {
       sort: "-created",
     });
 
-    console.log(records);
-
     setAllTornadoes(records);
   };
 
