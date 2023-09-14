@@ -23,7 +23,7 @@ const SeeTornadoes = () => {
   }, []);
 
   return (
-    <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row">
+    <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
       {allTornadoes &&
         allTornadoes.map((tornado) => {
           return (
