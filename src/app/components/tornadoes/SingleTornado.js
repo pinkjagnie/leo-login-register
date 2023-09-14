@@ -9,7 +9,7 @@ const SingleTornado = ({ id, userID, title, shortMsg, msg }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <span className="text-xs text-gray-800 text-right italic">
