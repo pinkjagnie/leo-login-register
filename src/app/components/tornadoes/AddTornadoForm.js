@@ -8,6 +8,7 @@ import { tornadoSchema } from "@/schemas/index";
 
 import CustomInput from "../form/custom/CustomInput";
 import CustomTextarea from "../form/custom/CustomTextarea";
+import CustomFileAttInput from "../form/custom/CustomFileAttInput";
 import Message from "../form/Message";
 
 const AddTornadoForm = () => {
@@ -17,15 +18,23 @@ const AddTornadoForm = () => {
   const onSubmit = async (values, actions) => {
     console.log(values);
 
+    const formData = new FormData();
+    const enteredAtt = formData.append("Attachment", values.Attachment);
+    console.log("formdata ", formData);
+
     const enteredTitle = values.Title;
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
+    // const enteredAtt = "";
+
+    console.log(enteredAtt);
 
     const data = {
       UserID: 1234,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
+      Attachment: enteredAtt,
     };
 
     try {
@@ -51,12 +60,12 @@ const AddTornadoForm = () => {
           Title: "",
           ShortMessage: "",
           Message: "",
-          // Attachment: ""
+          Attachment: "",
         }}
         validationSchema={tornadoSchema}
         onSubmit={onSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className="form-control w-[90%] md:w-[60%] lg:w-[50%] p-6 mx-auto mt-2 mb-14 border-2 border-stone-200 rounded-md bg-stone-200">
             <CustomInput label="Title *" name="Title" type="text" />
             <CustomInput
@@ -65,6 +74,15 @@ const AddTornadoForm = () => {
               type="text"
             />
             <CustomTextarea label="Message *" name="Message" type="text" />
+            <CustomFileAttInput
+              label="Attachment"
+              name="Attachment"
+              type="file"
+              value={undefined}
+              onChange={(event) => {
+                setFieldValue("Attachment", event.currentTarget.files[0]);
+              }}
+            />
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}

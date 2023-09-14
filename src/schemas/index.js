@@ -73,14 +73,14 @@ export const tornadoSchema = yup.object().shape({
     .min(2, "Minimum length: 2 characters")
     .max(200, "Maximum length: 200 characters")
     .required("This field is required"),
-  // Attachment: yup
-  //   .mixed()
-  //   .test("is-valid-type", "Not a valid image type", (value) =>
-  //     isValidFileType(value && value.name.toLowerCase(), "image")
-  //   )
-  //   .test(
-  //     "is-valid-size",
-  //     "Max allowed size is 100KB",
-  //     (value) => value && value.size <= MAX_FILE_SIZE
-  //   ),
+  Attachment: yup
+    .mixed()
+    .test("is-valid-type", "Not a valid image type", (value) =>
+      isValidFileType(value && value?.name, "image")
+    )
+    .test(
+      "is-valid-size",
+      "Max allowed size is 100KB",
+      (value) => value && value?.size <= MAX_FILE_SIZE
+    ),
 });
