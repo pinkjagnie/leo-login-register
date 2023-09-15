@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
 import pb from "@/lib/pocketbase";
@@ -18,6 +19,7 @@ const EditTornadoForm = ({ tornado }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+  const { userID } = useAuth();
 
   // const deleteAttachment = async (id) => {
   //   try {
@@ -46,7 +48,7 @@ const EditTornadoForm = ({ tornado }) => {
     const enteredAtt = values.Attachment;
 
     const data = {
-      UserID: 1234,
+      UserID: userID,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,

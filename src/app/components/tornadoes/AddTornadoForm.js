@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
 import pb from "@/lib/pocketbase";
@@ -16,6 +17,7 @@ const AddTornadoForm = () => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+  const { userID } = useAuth();
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -24,16 +26,17 @@ const AddTornadoForm = () => {
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
     const enteredAtt = values.Attachment;
-
-    console.log(enteredAtt);
+    const user = userID;
 
     const data = {
-      UserID: 1234,
+      UserID: user,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
       Attachment: enteredAtt,
     };
+
+    console.log(data);
 
     try {
       const record = await pb.collection("tornadoes").create(data);

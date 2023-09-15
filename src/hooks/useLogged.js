@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 import pb from "@/lib/pocketbase";
 
 export default function useLogged() {
   const [isLogged, setIsLogged] = useState(false);
   const [userData, setUserData] = useState();
+
+  const { setUserID } = useAuth();
 
   useEffect(() => {
     async function checkLogged() {
@@ -19,13 +22,14 @@ export default function useLogged() {
         console.log(pb.authStore.isValid); // returns true if logged in
         setIsLogged(pb.authStore.isValid);
         setUserData(user);
+        setUserID(user.UserID);
       } catch {
         setIsLogged(false);
       }
     }
 
     checkLogged();
-  }, []);
+  }, [isLogged]);
 
   return { isLogged, userData };
 }
