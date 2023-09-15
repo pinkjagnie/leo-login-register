@@ -1,6 +1,6 @@
-import { useField, setFieldValue } from "formik";
+import { useField } from "formik";
 
-const CustomFileAttInput = ({ label, ...props }) => {
+const CustomFileAttInput = ({ info, label, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
@@ -17,6 +17,7 @@ const CustomFileAttInput = ({ label, ...props }) => {
           meta.error && meta.touched ? "border-rose-500" : "border-gray-900"
         }`}
       />
+      {info && <p className="w-[95%] mx-auto pt-2 text-xs italic">{info}</p>}
       {meta.error && meta.touched && (
         <p className="pt-2 text-sm text-rose-600">{meta.error}</p>
       )}

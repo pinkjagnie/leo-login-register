@@ -70,17 +70,29 @@ const AddTornadoForm = () => {
       >
         {({ isSubmitting, setFieldValue }) => (
           <Form className="form-control w-[90%] md:w-[60%] lg:w-[50%] p-6 mx-auto mt-2 mb-14 border-2 border-stone-200 rounded-md bg-stone-200">
-            <CustomInput label="Title *" name="Title" type="text" />
+            <CustomInput
+              label="Title *"
+              name="Title"
+              type="text"
+              info="Length: 2-20 characters"
+            />
             <CustomInput
               label="Short message *"
               name="ShortMessage"
               type="text"
+              info="Length: 2-40 characters"
             />
-            <CustomTextarea label="Message *" name="Message" type="text" />
+            <CustomTextarea
+              label="Message *"
+              name="Message"
+              type="text"
+              info="Length: 2-200 characters"
+            />
             <CustomFileAttInput
               label="Attachment"
               name="Attachment"
               type="file"
+              info="Max allowed size is 100KB. Allows: jpg, gif, png, jpeg, svg, webp"
               value={undefined}
               onChange={(event) => {
                 setFieldValue("Attachment", event.currentTarget.files[0]);
