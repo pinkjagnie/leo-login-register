@@ -32,6 +32,7 @@ const SeeTornadoes = () => {
               title={tornado.Title}
               shortMsg={tornado.ShortMessage}
               msg={tornado.Message}
+              image={tornado.Attachment}
             />
           );
         })}
