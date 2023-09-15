@@ -23,6 +23,8 @@ const SeeTornadoes = ({ tornadoes }) => {
   //   getAllTornadoes();
   // }, [allTornadoes]);
 
+  useEffect(() => {}, [tornadoes]);
+
   return (
     <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
       {tornadoes && tornadoes.length === 0 && (
@@ -36,6 +38,7 @@ const SeeTornadoes = ({ tornadoes }) => {
             <SingleTornado
               key={tornado.id}
               id={tornado.id}
+              forAll={tornado.ForAll}
               userID={tornado.UserID}
               title={tornado.Title}
               shortMsg={tornado.ShortMessage}

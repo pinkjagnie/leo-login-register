@@ -8,7 +8,7 @@ import { CiImageOn, CiImageOff } from "react-icons/ci";
 
 import pb from "@/lib/pocketbase";
 
-const SingleTornado = ({ id, userID, title, shortMsg, msg, image }) => {
+const SingleTornado = ({ id, forAll, userID, title, shortMsg, msg, image }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -36,6 +36,11 @@ const SingleTornado = ({ id, userID, title, shortMsg, msg, image }) => {
     <>
       <div className="card w-96 bg-base-100 shadow-xl mx-auto">
         <div className="card-body">
+          <div className="flex items-center justify-end">
+            <div className="badge badge-ghost">
+              {forAll === true ? "public" : "private"}
+            </div>
+          </div>
           <h2 className="card-title">{title}</h2>
           <span className="text-xs text-gray-800 text-right italic">
             {userID}
