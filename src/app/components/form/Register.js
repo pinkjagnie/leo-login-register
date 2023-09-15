@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import pb from "@/lib/pocketbase";
+import { generateRandomId } from "@/lib/generateRandomUserID";
 
 import RegisterForm from "./RegisterForm";
 import Message from "./Message";
@@ -18,10 +19,13 @@ const Register = () => {
     const enteredPass = values.password;
     const enteredConfirmPass = values.confirmPassword;
 
+    const randomUserId = generateRandomId(8);
+
     const data = {
       email: enteredEmail,
       password: enteredPass,
       passwordConfirm: enteredConfirmPass,
+      UserID: randomUserId,
     };
 
     try {
