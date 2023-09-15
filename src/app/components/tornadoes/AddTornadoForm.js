@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Form, Formik } from "formik";
 
 import pb from "@/lib/pocketbase";
@@ -14,6 +15,7 @@ import Message from "../form/Message";
 const AddTornadoForm = () => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -40,6 +42,11 @@ const AddTornadoForm = () => {
       actions.resetForm();
 
       setMessage("Tornado successfully created!");
+
+      const timeout = setTimeout(() => {
+        router.push("/tornadoes/see");
+        clearTimeout(timeout);
+      }, 2000);
     } catch (error) {
       console.log(error);
       setErrorMsg("Something went wrong! " + error.data.message);
