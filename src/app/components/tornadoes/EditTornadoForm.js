@@ -9,6 +9,7 @@ import { tornadoSchema } from "@/schemas/index";
 
 import CustomInput from "../form/custom/CustomInput";
 import CustomTextarea from "../form/custom/CustomTextarea";
+import CustomFileAttInput from "../form/custom/CustomFileAttInput";
 import Message from "../form/Message";
 
 const EditTornadoForm = ({ tornado }) => {
@@ -16,18 +17,22 @@ const EditTornadoForm = ({ tornado }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
+  console.log(tornado.Attachment);
+
   const onSubmit = async (values, actions) => {
     console.log(values);
 
     const enteredTitle = values.Title;
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
+    const enteredAtt = values.Attachment;
 
     const data = {
       UserID: 1234,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
+      Attachment: enteredAtt,
     };
 
     console.log(data);
@@ -40,7 +45,10 @@ const EditTornadoForm = ({ tornado }) => {
 
       setMessage("Tornado successfully edited!");
 
-      router.push("/tornadoes/see");
+      const timeout = setTimeout(() => {
+        router.push("/tornadoes/see");
+        clearTimeout(timeout);
+      }, 2000);
     } catch (error) {
       console.log(error);
       setErrorMsg("Something went wrong! " + error.data.message);
@@ -57,12 +65,12 @@ const EditTornadoForm = ({ tornado }) => {
           Title: tornado.Title,
           ShortMessage: tornado.ShortMessage,
           Message: tornado.Message,
-          // Attachment: ""
+          Attachment: tornado.Attachment,
         }}
         validationSchema={tornadoSchema}
         onSubmit={onSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className="form-control w-[90%] md:w-[60%] lg:w-[50%] p-6 mx-auto mt-2 mb-14 border-2 border-stone-200 rounded-md bg-stone-200">
             <CustomInput label="Title *" name="Title" type="text" />
             <CustomInput
@@ -71,6 +79,15 @@ const EditTornadoForm = ({ tornado }) => {
               type="text"
             />
             <CustomTextarea label="Message *" name="Message" type="text" />
+            <CustomFileAttInput
+              label="Attachment"
+              name="Attachment"
+              type="file"
+              value={undefined}
+              onChange={(event) => {
+                setFieldValue("Attachment", event.currentTarget.files[0]);
+              }}
+            />
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}
