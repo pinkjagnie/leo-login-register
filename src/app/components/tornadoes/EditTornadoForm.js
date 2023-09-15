@@ -13,6 +13,7 @@ import { tornadoSchema } from "@/schemas/index";
 import CustomInput from "../form/custom/CustomInput";
 import CustomTextarea from "../form/custom/CustomTextarea";
 import CustomFileAttInput from "../form/custom/CustomFileAttInput";
+import CustomCheckbox from "../form/custom/CustomCheckbox";
 import Message from "../form/Message";
 
 const EditTornadoForm = ({ tornado }) => {
@@ -46,6 +47,7 @@ const EditTornadoForm = ({ tornado }) => {
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
     const enteredAtt = values.Attachment;
+    const enteredForAll = values.ForAll;
 
     const data = {
       UserID: userID,
@@ -53,6 +55,7 @@ const EditTornadoForm = ({ tornado }) => {
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
       Attachment: enteredAtt,
+      ForAll: enteredForAll,
     };
 
     console.log(data);
@@ -86,6 +89,7 @@ const EditTornadoForm = ({ tornado }) => {
           ShortMessage: tornado.ShortMessage,
           Message: tornado.Message,
           Attachment: tornado.Attachment,
+          ForAll: tornado.ForAll,
         }}
         validationSchema={tornadoSchema}
         onSubmit={onSubmit}
@@ -121,6 +125,11 @@ const EditTornadoForm = ({ tornado }) => {
               onChange={(event) => {
                 setFieldValue("Attachment", event.currentTarget.files[0]);
               }}
+            />
+            <CustomCheckbox
+              type="checkbox"
+              name="ForAll"
+              label="Make this tornado private"
             />
             {/* {tornado.Attachment && (
               <div className="w-[90%] mx-auto flex items-center justify-center -mt-4 pb-6">

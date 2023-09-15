@@ -11,6 +11,7 @@ import { tornadoSchema } from "@/schemas/index";
 import CustomInput from "../form/custom/CustomInput";
 import CustomTextarea from "../form/custom/CustomTextarea";
 import CustomFileAttInput from "../form/custom/CustomFileAttInput";
+import CustomCheckbox from "../form/custom/CustomCheckbox";
 import Message from "../form/Message";
 
 const AddTornadoForm = () => {
@@ -26,6 +27,7 @@ const AddTornadoForm = () => {
     const enteredShortMsg = values.ShortMessage;
     const enteredMsg = values.Message;
     const enteredAtt = values.Attachment;
+    const enteredForAll = values.ForAll;
     const user = userID;
 
     const data = {
@@ -34,6 +36,7 @@ const AddTornadoForm = () => {
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
       Attachment: enteredAtt,
+      ForAll: enteredForAll,
     };
 
     console.log(data);
@@ -47,7 +50,7 @@ const AddTornadoForm = () => {
       setMessage("Tornado successfully created!");
 
       const timeout = setTimeout(() => {
-        router.push("/tornadoes/see");
+        router.push(`/tornadoes/see/${userID}`);
         clearTimeout(timeout);
       }, 2000);
     } catch (error) {
@@ -67,6 +70,7 @@ const AddTornadoForm = () => {
           ShortMessage: "",
           Message: "",
           Attachment: "",
+          ForAll: false,
         }}
         validationSchema={tornadoSchema}
         onSubmit={onSubmit}
@@ -100,6 +104,11 @@ const AddTornadoForm = () => {
               onChange={(event) => {
                 setFieldValue("Attachment", event.currentTarget.files[0]);
               }}
+            />
+            <CustomCheckbox
+              type="checkbox"
+              name="ForAll"
+              label="Make this tornado private"
             />
             {!isSubmitting ? (
               <button
