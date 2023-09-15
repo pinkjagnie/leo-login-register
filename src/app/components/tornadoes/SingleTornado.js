@@ -47,7 +47,9 @@ const SingleTornado = ({ id, userID, title, shortMsg, msg, image }) => {
               {image ? (
                 <CiImageOn size={25} onClick={() => getImageUrl(id)} />
               ) : (
-                <CiImageOff size={25} />
+                <div className="lg:tooltip" data-tip="There is no image">
+                  <CiImageOff size={25} />
+                </div>
               )}
             </button>
             <button
