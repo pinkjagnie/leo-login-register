@@ -66,7 +66,7 @@ const EditTornadoForm = ({ tornado }) => {
       setMessage("Tornado successfully edited!");
 
       const timeout = setTimeout(() => {
-        router.push("/tornadoes/see");
+        router.push(`/tornadoes/see/${userID}`);
         clearTimeout(timeout);
       }, 2000);
     } catch (error) {

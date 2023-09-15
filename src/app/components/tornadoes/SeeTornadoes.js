@@ -1,29 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import pb from "@/lib/pocketbase";
 
 import SingleTornado from "./SingleTornado";
 
-const SeeTornadoes = () => {
-  const [allTornadoes, setAllTornadoes] = useState();
+const SeeTornadoes = ({ tornadoes }) => {
+  // const [allTornadoes, setAllTornadoes] = useState();
 
-  const getAllTornadoes = async () => {
-    const records = await pb.collection("tornadoes").getFullList({
-      sort: "-created",
-    });
+  // const { userID } = useAuth();
 
-    setAllTornadoes(records);
-  };
+  // const getAllTornadoes = async () => {
+  //   const records = await pb.collection("tornadoes").getFullList({
+  //     sort: "-created",
+  //   });
 
-  useEffect(() => {
-    getAllTornadoes();
-  }, [allTornadoes]);
+  //   setAllTornadoes(records);
+  // };
+
+  // useEffect(() => {
+  //   getAllTornadoes();
+  // }, [allTornadoes]);
 
   return (
     <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
-      {allTornadoes &&
-        allTornadoes.map((tornado) => {
+      {tornadoes && tornadoes.length === 0 && (
+        <p className="text-center font-medium text-lg">
+          Sorry, there is no tornadoes
+        </p>
+      )}
+      {tornadoes &&
+        tornadoes.map((tornado) => {
           return (
             <SingleTornado
               key={tornado.id}
