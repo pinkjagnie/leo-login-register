@@ -50,7 +50,7 @@ const EditTornadoForm = ({ tornado }) => {
     const enteredForAll = values.ForAll;
 
     const data = {
-      UserID: userID,
+      UserIdentificator: userID,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,

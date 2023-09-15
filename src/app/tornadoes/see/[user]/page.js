@@ -6,7 +6,7 @@ const getUserTornadoes = async (user) => {
   console.log("user z funkcji ", user);
 
   const records = await pb.collection("tornadoes").getFullList(undefined, {
-    filter: `UserID = "${user}"`,
+    filter: `UserIdentificator = "${user}"`,
   });
 
   if (!records) {

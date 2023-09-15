@@ -31,7 +31,7 @@ const AddTornadoForm = () => {
     const user = userID;
 
     const data = {
-      UserID: user,
+      UserIdentificator: user,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,

@@ -22,7 +22,7 @@ export default function useLogged() {
         console.log(pb.authStore.isValid); // returns true if logged in
         setIsLogged(pb.authStore.isValid);
         setUserData(user);
-        setUserID(user.UserID);
+        setUserID(user.UserIdentificator);
       } catch {
         setIsLogged(false);
       }

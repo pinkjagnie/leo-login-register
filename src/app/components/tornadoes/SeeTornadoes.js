@@ -26,28 +26,30 @@ const SeeTornadoes = ({ tornadoes }) => {
   useEffect(() => {}, [tornadoes]);
 
   return (
-    <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
+    <>
       {tornadoes && tornadoes.length === 0 && (
-        <p className="text-center font-medium text-lg">
+        <p className="text-center font-medium text-xl pt-4">
           Sorry, there is no tornadoes
         </p>
       )}
-      {tornadoes &&
-        tornadoes.map((tornado) => {
-          return (
-            <SingleTornado
-              key={tornado.id}
-              id={tornado.id}
-              forAll={tornado.ForAll}
-              userID={tornado.UserID}
-              title={tornado.Title}
-              shortMsg={tornado.ShortMessage}
-              msg={tornado.Message}
-              image={tornado.Attachment}
-            />
-          );
-        })}
-    </div>
+      <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
+        {tornadoes &&
+          tornadoes.map((tornado) => {
+            return (
+              <SingleTornado
+                key={tornado.id}
+                id={tornado.id}
+                forAll={tornado.ForAll}
+                userID={tornado.UserIdentificator}
+                title={tornado.Title}
+                shortMsg={tornado.ShortMessage}
+                msg={tornado.Message}
+                image={tornado.Attachment}
+              />
+            );
+          })}
+      </div>
+    </>
   );
 };
 

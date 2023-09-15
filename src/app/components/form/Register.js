@@ -25,7 +25,7 @@ const Register = () => {
       email: enteredEmail,
       password: enteredPass,
       passwordConfirm: enteredConfirmPass,
-      UserID: randomUserId,
+      UserIdentificator: randomUserId,
     };
 
     try {
