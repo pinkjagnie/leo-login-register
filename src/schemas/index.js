@@ -73,6 +73,7 @@ export const tornadoSchema = yup.object().shape({
     .min(2, "Minimum length: 2 characters")
     .max(200, "Maximum length: 200 characters")
     .required("This field is required"),
+  ForAll: yup.boolean().required("This field is required"),
   Attachment: yup
     .mixed()
     .test("is-valid-type", "Not a valid image type", (value) => {
