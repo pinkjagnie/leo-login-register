@@ -7,6 +7,8 @@ import { Form, Formik } from "formik";
 import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
+// import { LuImageMinus } from "react-icons/lu";
+
 import CustomInput from "../form/custom/CustomInput";
 import CustomTextarea from "../form/custom/CustomTextarea";
 import CustomFileAttInput from "../form/custom/CustomFileAttInput";
@@ -17,7 +19,23 @@ const EditTornadoForm = ({ tornado }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
-  console.log(tornado.Attachment);
+  // const deleteAttachment = async (id) => {
+  //   try {
+  //     await pb.collection("tornadoes").update(id, {
+  //       documents: null,
+  //     });
+
+  //     setMessage("Attachment deleted!");
+
+  //     const timeout = setTimeout(() => {
+  //       router.push("/tornadoes/see");
+  //       clearTimeout(timeout);
+  //     }, 2000);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setErrorMsg("Something went wrong! " + error.data.message);
+  //   }
+  // };
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -102,6 +120,19 @@ const EditTornadoForm = ({ tornado }) => {
                 setFieldValue("Attachment", event.currentTarget.files[0]);
               }}
             />
+            {/* {tornado.Attachment && (
+              <div className="w-[90%] mx-auto flex items-center justify-center -mt-4 pb-6">
+                <div className="pr-4 text-center">
+                  <p>This tornado has an image.</p> <p>Want to remove it?</p>
+                </div>
+                <button
+                  className="btn btn-outline btn-error"
+                  onClick={() => deleteAttachment(tornado.id)}
+                >
+                  <LuImageMinus size={20} />
+                </button>
+              </div>
+            )} */}
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}
