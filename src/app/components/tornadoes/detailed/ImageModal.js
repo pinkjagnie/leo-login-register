@@ -2,8 +2,11 @@ import Image from "next/image";
 
 const ImageModal = ({ imageUrl, closeModalHandler }) => {
   return (
-    <div className="fixed top-0 left-0 bg-black bg-opacity-80 w-[100vw] h-[100vh] z-20">
-      <div className="modal-box absolute top-40 lg:top-20 lg:left-[30%]">
+    <div
+      className="fixed top-0 left-0 bg-black bg-opacity-80 w-[100vw] h-[100vh] z-20"
+      onClick={() => closeModalHandler()}
+    >
+      <div className="modal-box absolute top-[10%] left-[5%] md:left-[20%] lg:top-20 lg:left-[30%]">
         <p className="text-center font-medium pb-6">
           Here is your image for this tornado
         </p>
