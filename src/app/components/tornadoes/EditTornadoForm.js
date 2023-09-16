@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
-import pb from "@/lib/pocketbase";
+// import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
 // import { LuImageMinus } from "react-icons/lu";
@@ -20,7 +20,7 @@ const EditTornadoForm = ({ tornado }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
-  const { userID } = useAuth();
+  const { user, pb } = useAuth();
 
   // const deleteAttachment = async (id) => {
   //   try {
@@ -50,7 +50,7 @@ const EditTornadoForm = ({ tornado }) => {
     const enteredForAll = values.ForAll;
 
     const data = {
-      UserIdentificator: userID,
+      UserIdentificator: user.UserIdentificator,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
@@ -69,7 +69,7 @@ const EditTornadoForm = ({ tornado }) => {
       setMessage("Tornado successfully edited!");
 
       const timeout = setTimeout(() => {
-        router.push(`/tornadoes/see/${userID}`);
+        router.push(`/tornadoes/see/${user.UserIdentificator}`);
         clearTimeout(timeout);
       }, 2000);
     } catch (error) {

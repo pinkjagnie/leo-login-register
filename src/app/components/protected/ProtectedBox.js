@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import useLogged from "@/hooks/useLogged";
+
+import { useAuth } from "@/context/AuthContext";
 
 const ProtectedBox = () => {
-  const { isLogged, userData } = useLogged();
-
-  console.log("z komponentu ", isLogged);
+  const { user } = useAuth();
 
   let logContent;
 
-  if (isLogged) {
-    logContent = <p>Hello, dear {userData.email}</p>;
+  if (user) {
+    logContent = <p>Hello, dear {user.email}</p>;
   } else {
     logContent = (
       <>

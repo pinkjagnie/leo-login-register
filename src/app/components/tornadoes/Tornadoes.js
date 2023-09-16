@@ -1,25 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import useLogged from "@/hooks/useLogged";
+
+import { useAuth } from "@/context/AuthContext";
 
 import TornadoesHero from "./TornadoesHero";
 
 import { WiTornado } from "react-icons/wi";
 
 const Tornadoes = () => {
-  const { isLogged, userData } = useLogged();
+  const { user } = useAuth();
 
-  console.log("z komponentu ", isLogged);
+  // console.log("z komponentu ", isLogged);
 
   let logContent;
 
-  if (isLogged) {
+  if (user) {
     logContent = (
       <>
         <p>
-          Hello, dear {userData.email}. Below you can see and manage your
-          tornadoes
+          Hello, dear {user.email}. Below you can see and manage your tornadoes
         </p>
         <TornadoesHero />
       </>

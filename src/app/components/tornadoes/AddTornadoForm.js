@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
-import pb from "@/lib/pocketbase";
+// import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
 import CustomInput from "../form/custom/CustomInput";
@@ -18,7 +18,7 @@ const AddTornadoForm = () => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
-  const { userID } = useAuth();
+  const { user, pb } = useAuth();
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -28,10 +28,10 @@ const AddTornadoForm = () => {
     const enteredMsg = values.Message;
     const enteredAtt = values.Attachment;
     const enteredForAll = values.ForAll;
-    const user = userID;
+    const userID = user.UserIdentificator;
 
     const data = {
-      UserIdentificator: user,
+      UserIdentificator: userID,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
@@ -50,7 +50,7 @@ const AddTornadoForm = () => {
       setMessage("Tornado successfully created!");
 
       const timeout = setTimeout(() => {
-        router.push(`/tornadoes/see/${userID}`);
+        router.push(`/tornadoes/see/${user.UserIdentificator}`);
         clearTimeout(timeout);
       }, 2000);
     } catch (error) {

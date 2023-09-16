@@ -4,7 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import pb from "@/lib/pocketbase";
 
 export default function useLogout() {
-  const { setIsLoggedIn } = useAuth();
+  // const {  } = useAuth();
   const router = useRouter();
 
   function logout() {
@@ -12,10 +12,12 @@ export default function useLogout() {
 
     console.log(pb.authStore.isValid);
 
-    setIsLoggedIn(false);
+    // console.log("auth data ", authData);
+
+    // setIsLoggedIn(false);
 
     // redirecting
-    router.push("/");
+    // router.push("/");
   }
 
   return logout;

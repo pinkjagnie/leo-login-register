@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import pb from "@/lib/pocketbase";
+import { useAuth } from "@/context/AuthContext";
+// import pb from "@/lib/pocketbase";
 
 import SingleTornado from "./SingleTornado";
 
 const SeeTornadoes = ({ user }) => {
   const [allTornadoes, setAllTornadoes] = useState();
+
+  const { pb } = useAuth();
 
   const getUserTornadoes = async (user) => {
     const records = await pb.collection("tornadoes").getFullList(undefined, {
