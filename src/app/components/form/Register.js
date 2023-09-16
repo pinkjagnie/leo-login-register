@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/context/AuthContext";
 
-import { generateRandomId } from "@/lib/generateRandomUserID";
+import { generateRandomId } from "@/utils/generateRandomUserID";
 
 import RegisterForm from "./RegisterForm";
 import Message from "./Message";
@@ -26,13 +26,6 @@ const Register = () => {
 
     const randomUserId = generateRandomId(8);
 
-    // const data = {
-    //   email: enteredEmail,
-    //   password: enteredPass,
-    //   passwordConfirm: enteredConfirmPass,
-    //   UserIdentificator: randomUserId,
-    // };
-
     try {
       await register(
         enteredEmail,
@@ -40,9 +33,7 @@ const Register = () => {
         enteredConfirmPass,
         randomUserId
       );
-      // const record = await pb.collection("users").create(data);
 
-      // console.log("record ", record);
       actions.resetForm();
 
       setMessage(

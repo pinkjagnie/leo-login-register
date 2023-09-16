@@ -11,8 +11,6 @@ import { WiTornado } from "react-icons/wi";
 const Tornadoes = () => {
   const { user } = useAuth();
 
-  // console.log("z komponentu ", isLogged);
-
   let logContent;
 
   if (user) {

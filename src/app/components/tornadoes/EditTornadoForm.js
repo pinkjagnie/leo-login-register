@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
-// import pb from "@/lib/pocketbase";
+import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
 // import { LuImageMinus } from "react-icons/lu";
@@ -20,7 +20,7 @@ const EditTornadoForm = ({ tornado }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
-  const { user, pb } = useAuth();
+  const { user } = useAuth();
 
   // const deleteAttachment = async (id) => {
   //   try {
