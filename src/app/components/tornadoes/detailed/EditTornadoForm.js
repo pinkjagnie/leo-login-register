@@ -15,30 +15,13 @@ import CustomTextarea from "../../form/custom/CustomTextarea";
 import CustomFileAttInput from "../../form/custom/CustomFileAttInput";
 import CustomCheckbox from "../../form/custom/CustomCheckbox";
 import Message from "../../form/Message";
+// import DeleteImage from "./DeleteImage";
 
 const EditTornadoForm = ({ tornado }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
   const { user } = useAuth();
-
-  // const deleteAttachment = async (id) => {
-  //   try {
-  //     await pb.collection("tornadoes").update(id, {
-  //       documents: null,
-  //     });
-
-  //     setMessage("Attachment deleted!");
-
-  //     const timeout = setTimeout(() => {
-  //       router.push("/tornadoes/see");
-  //       clearTimeout(timeout);
-  //     }, 2000);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setErrorMsg("Something went wrong! " + error.data.message);
-  //   }
-  // };
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -131,19 +114,7 @@ const EditTornadoForm = ({ tornado }) => {
               name="ForAll"
               label="Should this tornado be public?"
             />
-            {/* {tornado.Attachment && (
-              <div className="w-[90%] mx-auto flex items-center justify-center -mt-4 pb-6">
-                <div className="pr-4 text-center">
-                  <p>This tornado has an image.</p> <p>Want to remove it?</p>
-                </div>
-                <button
-                  className="btn btn-outline btn-error"
-                  onClick={() => deleteAttachment(tornado.id)}
-                >
-                  <LuImageMinus size={20} />
-                </button>
-              </div>
-            )} */}
+            {/* {tornado.Attachment && <DeleteImage id={tornado.id} />} */}
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}
