@@ -34,7 +34,7 @@ const SingleTornado = ({ id, forAll, userID, title, shortMsg, msg, image }) => {
 
   return (
     <>
-      <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+      <div className="w-[90%] card lg:w-96 bg-base-100 shadow-xl mx-auto">
         <div className="card-body">
           <div className="flex items-center justify-end">
             <div className="badge badge-ghost">

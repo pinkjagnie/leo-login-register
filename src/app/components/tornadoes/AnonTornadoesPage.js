@@ -29,11 +29,11 @@ const AnonTornadoesPage = () => {
           Here are list of public tornadoes
         </h1>
         {publicTornadoes && publicTornadoes.length === 0 && (
-          <p className="text-center font-medium text-xl pt-4">
+          <p className="w-[90%] mx-auto text-center font-medium text-xl pt-4">
             Sorry, there are no public tornadoes
           </p>
         )}
-        <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
+        <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:grid md:grid-cols-2">
           {publicTornadoes &&
             publicTornadoes.map((tornado) => {
               return (
@@ -51,8 +51,8 @@ const AnonTornadoesPage = () => {
             })}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center pt-6 pb-10">
-        <p className="pb-4 text-xl font-bold">
+      <div className="w-[90%] mx-auto flex flex-col items-center justify-center pt-6 pb-10">
+        <p className="pb-4 text-xl font-bold text-center">
           You are not logged in. If you want to see your tornadoes you have to
           login
         </p>

@@ -27,7 +27,7 @@ const SeeTornadoes = ({ user }) => {
           Sorry, there is no tornadoes
         </p>
       )}
-      <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
+      <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:grid md:grid-cols-2">
         {allTornadoes &&
           allTornadoes.map((tornado) => {
             return (
