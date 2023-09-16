@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 
 import SeeTornadoes from "./detailed/SeeTornadoes";
 
-const TornadoesBoxPage = ({ paramsUser }) => {
+const ListTornadoesBox = ({ paramsUser }) => {
   const { user } = useAuth();
 
   let pageContent;
@@ -36,4 +36,4 @@ const TornadoesBoxPage = ({ paramsUser }) => {
   return <>{pageContent}</>;
 };
 
-export default TornadoesBoxPage;
+export default ListTornadoesBox;

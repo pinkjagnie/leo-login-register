@@ -4,11 +4,11 @@ import Link from "next/link";
 
 import { useAuth } from "@/context/AuthContext";
 
-import TornadoesHero from "./TornadoesHero";
+import TornadoesHero from "./detailed/TornadoesHero";
 
 import { WiTornado } from "react-icons/wi";
 
-const Tornadoes = () => {
+const UserTornadoesPage = () => {
   const { user } = useAuth();
 
   let logContent;
@@ -46,4 +46,4 @@ const Tornadoes = () => {
   );
 };
 
-export default Tornadoes;
+export default UserTornadoesPage;
