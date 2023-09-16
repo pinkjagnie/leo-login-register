@@ -108,7 +108,7 @@ const AddTornadoForm = () => {
             <CustomCheckbox
               type="checkbox"
               name="ForAll"
-              label="Make this tornado private"
+              label="Should this tornado be public?"
             />
             {!isSubmitting ? (
               <button

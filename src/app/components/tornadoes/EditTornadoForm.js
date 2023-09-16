@@ -129,7 +129,7 @@ const EditTornadoForm = ({ tornado }) => {
             <CustomCheckbox
               type="checkbox"
               name="ForAll"
-              label="Make this tornado private"
+              label="Should this tornado be public?"
             />
             {/* {tornado.Attachment && (
               <div className="w-[90%] mx-auto flex items-center justify-center -mt-4 pb-6">
