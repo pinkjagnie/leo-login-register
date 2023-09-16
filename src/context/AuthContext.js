@@ -6,6 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useRouter } from "next/navigation";
 import { useInterval } from "usehooks-ts";
 import PocketBase from "pocketbase";
 import jwtDecode from "jwt-decode";
@@ -21,6 +22,8 @@ export function AuthProvider({ children }) {
 
   const [token, setToken] = useState(pb.authStore.token);
   const [user, setUser] = useState(pb.authStore.model); // user gonna be -> all infos from pb about currently logged in user (e.g.: UserIdentificator, email)
+
+  const router = useRouter();
 
   useEffect(() => {
     return pb.authStore.onChange((token, model) => {
@@ -49,6 +52,7 @@ export function AuthProvider({ children }) {
 
   const logout = useCallback(() => {
     pb.authStore.clear();
+    router.push("/");
   }, []);
 
   const refreshSession = useCallback(async () => {

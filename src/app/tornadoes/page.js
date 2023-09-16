@@ -1,4 +1,4 @@
-import Tornadoes from "../components/tornadoes/Tornadoes";
+import Tornadoes from "../components/tornadoes/detailed/Tornadoes";
 
 const Page = () => {
   return (

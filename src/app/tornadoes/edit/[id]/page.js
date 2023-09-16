@@ -1,4 +1,4 @@
-import EditTornado from "@/app/components/tornadoes/EditTornado";
+import EditTornadoBox from "@/app/components/tornadoes/EditTornadoBox";
 
 import pb from "@/lib/pocketbase";
 
@@ -21,10 +21,7 @@ const Page = async ({ params }) => {
 
   return (
     <section className="w-full min-h-screen pt-20 bg-slate-50">
-      <h1 className="py-4 text-xl text-center font-bold">
-        Below you can edit your tornado
-      </h1>
-      <EditTornado tornado={tornado} />
+      <EditTornadoBox tornado={tornado} />
     </section>
   );
 };

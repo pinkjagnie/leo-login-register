@@ -5,20 +5,40 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Form, Formik } from "formik";
 
-// import pb from "@/lib/pocketbase";
+import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
-import CustomInput from "../form/custom/CustomInput";
-import CustomTextarea from "../form/custom/CustomTextarea";
-import CustomFileAttInput from "../form/custom/CustomFileAttInput";
-import CustomCheckbox from "../form/custom/CustomCheckbox";
-import Message from "../form/Message";
+// import { LuImageMinus } from "react-icons/lu";
 
-const AddTornadoForm = () => {
+import CustomInput from "../../form/custom/CustomInput";
+import CustomTextarea from "../../form/custom/CustomTextarea";
+import CustomFileAttInput from "../../form/custom/CustomFileAttInput";
+import CustomCheckbox from "../../form/custom/CustomCheckbox";
+import Message from "../../form/Message";
+
+const EditTornadoForm = ({ tornado }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
-  const { user, pb } = useAuth();
+  const { user } = useAuth();
+
+  // const deleteAttachment = async (id) => {
+  //   try {
+  //     await pb.collection("tornadoes").update(id, {
+  //       documents: null,
+  //     });
+
+  //     setMessage("Attachment deleted!");
+
+  //     const timeout = setTimeout(() => {
+  //       router.push("/tornadoes/see");
+  //       clearTimeout(timeout);
+  //     }, 2000);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setErrorMsg("Something went wrong! " + error.data.message);
+  //   }
+  // };
 
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -28,10 +48,9 @@ const AddTornadoForm = () => {
     const enteredMsg = values.Message;
     const enteredAtt = values.Attachment;
     const enteredForAll = values.ForAll;
-    const userID = user.UserIdentificator;
 
     const data = {
-      UserIdentificator: userID,
+      UserIdentificator: user.UserIdentificator,
       Title: enteredTitle,
       ShortMessage: enteredShortMsg,
       Message: enteredMsg,
@@ -42,12 +61,12 @@ const AddTornadoForm = () => {
     console.log(data);
 
     try {
-      const record = await pb.collection("tornadoes").create(data);
+      const record = await pb.collection("tornadoes").update(tornado.id, data);
 
       console.log("record ", record);
       actions.resetForm();
 
-      setMessage("Tornado successfully created!");
+      setMessage("Tornado successfully edited!");
 
       const timeout = setTimeout(() => {
         router.push(`/tornadoes/see/${user.UserIdentificator}`);
@@ -66,11 +85,11 @@ const AddTornadoForm = () => {
       )}
       <Formik
         initialValues={{
-          Title: "",
-          ShortMessage: "",
-          Message: "",
-          Attachment: "",
-          ForAll: false,
+          Title: tornado.Title,
+          ShortMessage: tornado.ShortMessage,
+          Message: tornado.Message,
+          Attachment: tornado.Attachment,
+          ForAll: tornado.ForAll,
         }}
         validationSchema={tornadoSchema}
         onSubmit={onSubmit}
@@ -99,7 +118,9 @@ const AddTornadoForm = () => {
               label="Attachment"
               name="Attachment"
               type="file"
-              info="Max allowed size is 100KB. Allows: jpg, gif, png, jpeg, svg, webp"
+              info={`Max allowed size is 100KB. If the tornado has an image, adding a new one will automatically delete the current image. This tornado: ${
+                tornado.Attachment ? "has an image" : "does not have an image"
+              }.`}
               value={undefined}
               onChange={(event) => {
                 setFieldValue("Attachment", event.currentTarget.files[0]);
@@ -110,18 +131,31 @@ const AddTornadoForm = () => {
               name="ForAll"
               label="Should this tornado be public?"
             />
+            {/* {tornado.Attachment && (
+              <div className="w-[90%] mx-auto flex items-center justify-center -mt-4 pb-6">
+                <div className="pr-4 text-center">
+                  <p>This tornado has an image.</p> <p>Want to remove it?</p>
+                </div>
+                <button
+                  className="btn btn-outline btn-error"
+                  onClick={() => deleteAttachment(tornado.id)}
+                >
+                  <LuImageMinus size={20} />
+                </button>
+              </div>
+            )} */}
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}
                 type="submit"
                 className="btn btn-outline bg-zinc-400 w-[80%] mx-auto block"
               >
-                Add new tornado
+                Edit tornado
               </button>
             ) : (
               <button className="btn btn-active btn-accent text-slate-50 w-[80%] mx-auto block">
                 <span className="loading loading-spinner text-slate-50"></span>
-                Adding
+                Editing
               </button>
             )}
           </Form>
@@ -131,4 +165,4 @@ const AddTornadoForm = () => {
   );
 };
 
-export default AddTornadoForm;
+export default EditTornadoForm;
