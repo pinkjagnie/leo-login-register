@@ -1,40 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAuth } from "@/context/AuthContext";
 import pb from "@/lib/pocketbase";
 
 import SingleTornado from "./SingleTornado";
 
-const SeeTornadoes = ({ tornadoes }) => {
-  // const [allTornadoes, setAllTornadoes] = useState();
+const SeeTornadoes = ({ user }) => {
+  const [allTornadoes, setAllTornadoes] = useState();
 
-  // const { userID } = useAuth();
+  const getUserTornadoes = async (user) => {
+    const records = await pb.collection("tornadoes").getFullList(undefined, {
+      filter: `UserIdentificator = "${user}"`,
+    });
 
-  // const getAllTornadoes = async () => {
-  //   const records = await pb.collection("tornadoes").getFullList({
-  //     sort: "-created",
-  //   });
+    setAllTornadoes(records);
+  };
 
-  //   setAllTornadoes(records);
-  // };
-
-  // useEffect(() => {
-  //   getAllTornadoes();
-  // }, [allTornadoes]);
-
-  useEffect(() => {}, [tornadoes]);
+  useEffect(() => {
+    getUserTornadoes(user);
+  }, [allTornadoes]);
 
   return (
     <>
-      {tornadoes && tornadoes.length === 0 && (
+      {allTornadoes && allTornadoes.length === 0 && (
         <p className="text-center font-medium text-xl pt-4">
           Sorry, there is no tornadoes
         </p>
       )}
       <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:flex-row lg:grid lg:grid-cols-2">
-        {tornadoes &&
-          tornadoes.map((tornado) => {
+        {allTornadoes &&
+          allTornadoes.map((tornado) => {
             return (
               <SingleTornado
                 key={tornado.id}
