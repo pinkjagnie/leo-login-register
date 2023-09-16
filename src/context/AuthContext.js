@@ -57,12 +57,12 @@ export function AuthProvider({ children }) {
 
   const refreshSession = useCallback(async () => {
     if (!pb.authStore.isValid) return;
-    const decoded = jwtDecode(token);
-    const tokenExpiration = decoded.exp;
-    const expirationWithBuffer = (decoded.exp + fiveMinutesInMs) / 1000;
+    const decoded = jwtDecode(token); // token saved in state
+    const tokenExpiration = decoded.exp; // decoding to obtain the expiration value
+    const expirationWithBuffer = (decoded.exp + fiveMinutesInMs) / 1000; // token expiration value plus 5 mins
     if (tokenExpiration < expirationWithBuffer) {
       await pb.collection("users").authRefresh();
-    }
+    } // if the sum of token expiration value + 5 mins is greater than the expiration of the token, then refresh the session
   }, [token]);
 
   useInterval(refreshSession, token ? twoMinutesInMs : null);
