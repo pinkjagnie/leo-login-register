@@ -18,7 +18,7 @@ const SeeTornadoes = ({ user }) => {
 
   useEffect(() => {
     getUserTornadoes(user);
-  }, [allTornadoes]);
+  }, [allTornadoes, user]);
 
   return (
     <>
