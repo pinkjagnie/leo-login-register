@@ -8,16 +8,13 @@ import { Form, Formik } from "formik";
 import pb from "@/lib/pocketbase";
 import { tornadoSchema } from "@/schemas/index";
 
-// import { LuImageMinus } from "react-icons/lu";
-
 import CustomInput from "../../form/custom/CustomInput";
 import CustomTextarea from "../../form/custom/CustomTextarea";
-import CustomFileAttInput from "../../form/custom/CustomFileAttInput";
+import ImageForForm from "./ImageForForm";
 import CustomCheckbox from "../../form/custom/CustomCheckbox";
 import Message from "../../form/Message";
-// import DeleteImage from "./DeleteImage";
 
-const EditTornadoForm = ({ tornado }) => {
+const EditTornadoForm = ({ tornado, imageUrl }) => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
@@ -97,24 +94,16 @@ const EditTornadoForm = ({ tornado }) => {
               type="text"
               info="Length: 2-200 characters"
             />
-            <CustomFileAttInput
-              label="Attachment"
-              name="Attachment"
-              type="file"
-              info={`Max allowed size is 100KB. If the tornado has an image, adding a new one will automatically delete the current image. This tornado: ${
-                tornado.Attachment ? "has an image" : "does not have an image"
-              }.`}
-              value={undefined}
-              onChange={(event) => {
-                setFieldValue("Attachment", event.currentTarget.files[0]);
-              }}
+            <ImageForForm
+              tornado={tornado}
+              imageUrl={imageUrl}
+              setFieldValue={setFieldValue}
             />
             <CustomCheckbox
               type="checkbox"
               name="ForAll"
               label="Should this tornado be public?"
             />
-            {/* {tornado.Attachment && <DeleteImage id={tornado.id} />} */}
             {!isSubmitting ? (
               <button
                 disabled={isSubmitting}
