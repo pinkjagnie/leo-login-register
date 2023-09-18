@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useAuth } from "@/context/AuthContext";
@@ -8,6 +8,16 @@ import { CgMenuRound, CgCloseO } from "react-icons/cg";
 const MobileMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const { user, logout } = useAuth();
+
+  const [menuContent, setMenuContent] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setMenuContent(true);
+    } else if (!user) {
+      setMenuContent(false);
+    }
+  }, [user]);
 
   const hamburgerIcon = (
     <CgMenuRound
@@ -44,39 +54,43 @@ const MobileMenu = () => {
           }
         >
           <ul className="w-[100%] font-medium text-xl">
-            {!user && (
-              <li>
-                <Link href="/register" onClick={() => closeMenu()}>
-                  Register
-                </Link>
-              </li>
-            )}
-            {!user && (
-              <li className="my-6">
-                <Link href="/login" onClick={() => closeMenu()}>
-                  Login
-                </Link>
-              </li>
-            )}
-            {user && (
-              <li className="my-6">
-                <Link
-                  href={`/tornadoes/see/${user.UserIdentificator}`}
-                  onClick={() => closeMenu()}
-                >
-                  Tornadoes
-                </Link>
-              </li>
-            )}
-            <li className="my-6">
-              <Link href="/protected" onClick={() => closeMenu()}>
-                Protected
-              </Link>
-            </li>
-            {user && (
-              <li className="my-6">
-                <button onClick={logoutHandler}>Logout</button>
-              </li>
+            {menuContent ? (
+              <>
+                <li>
+                  <Link
+                    href={`/tornadoes/see/${user?.UserIdentificator}`}
+                    onClick={() => closeMenu()}
+                  >
+                    Tornadoes
+                  </Link>
+                </li>
+                <li className="my-6">
+                  <Link href="/protected" onClick={() => closeMenu()}>
+                    Protected
+                  </Link>
+                </li>
+                <li className="my-6">
+                  <button onClick={logoutHandler}>Logout</button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link href="/login" onClick={() => closeMenu()}>
+                    Login
+                  </Link>
+                </li>
+                <li className="my-6">
+                  <Link href="/register" onClick={() => closeMenu()}>
+                    Register
+                  </Link>
+                </li>
+                <li className="my-6">
+                  <Link href="/protected" onClick={() => closeMenu()}>
+                    Protected
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
