@@ -14,9 +14,17 @@ const ListTornadoesBox = ({ paramsUser }) => {
   if (user) {
     pageContent = (
       <>
-        <h1 className="py-4 text-xl text-center font-bold">
+        <h1 className="py-4 text-3xl text-center font-bold">
           Here are your tornadoes
         </h1>
+        <div className="flex flex-col lg:flex-row items-center justify-center w-[90%] mx-auto pt-2">
+          <p className="font-medium pb-2 lg:pr-4">
+            Want to add some new tornado?
+          </p>
+          <Link href="/tornadoes/add" className="btn btn-neutral">
+            Add new tornado
+          </Link>
+        </div>
         <SeeTornadoes user={paramsUser} />
       </>
     );
