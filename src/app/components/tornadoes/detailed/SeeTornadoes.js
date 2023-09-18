@@ -24,7 +24,7 @@ const SeeTornadoes = ({ user }) => {
     <>
       {allTornadoes && allTornadoes.length === 0 && (
         <p className="text-center font-medium text-xl pt-4">
-          Sorry, there is no tornadoes
+          Sorry, there are no tornadoes
         </p>
       )}
       <div className="w-[90%] mx-auto py-10 flex items-center justify-center gap-6 flex-col md:grid md:grid-cols-2">

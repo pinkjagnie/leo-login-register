@@ -14,7 +14,6 @@ const SingleTornado = ({ id, forAll, userID, title, shortMsg, msg, image }) => {
 
   const deleteHandler = async (id) => {
     await pb.collection("tornadoes").delete(id);
-    console.log("deleted");
   };
 
   const getImageUrl = async (id) => {

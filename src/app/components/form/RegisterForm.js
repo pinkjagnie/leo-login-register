@@ -3,7 +3,6 @@
 import { Form, Formik } from "formik";
 
 import { registerSchema } from "@/schemas/index";
-// import { createUser } from "@/actions/index";
 
 import CustomInput from "./custom/CustomInput";
 import CustomPasswordInput from "./custom/CustomPasswordInput";

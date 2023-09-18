@@ -9,10 +9,6 @@ const CustomFileAttInput = ({ info, label, ...props }) => {
       <input
         {...field}
         {...props}
-        // value={undefined}
-        // onChange={(event) => {
-        //   setFieldValue("Attachment", event.currentTarget.files[0]);
-        // }}
         className={`file-input file-input-bordered w-full bg-stone-100 ${
           meta.error && meta.touched ? "border-rose-500" : "border-gray-900"
         }`}

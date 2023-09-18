@@ -1,4 +1,3 @@
-// import RegisterForm from "../components/form/RegisterForm";
 import Register from "../components/form/Register";
 
 const Page = () => {
