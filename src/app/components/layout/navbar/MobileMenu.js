@@ -58,6 +58,16 @@ const MobileMenu = () => {
                 </Link>
               </li>
             )}
+            {user && (
+              <li className="my-6">
+                <Link
+                  href={`/tornadoes/see/${user.UserIdentificator}`}
+                  onClick={() => closeMenu()}
+                >
+                  Tornadoes
+                </Link>
+              </li>
+            )}
             <li className="my-6">
               <Link href="/protected" onClick={() => closeMenu()}>
                 Protected

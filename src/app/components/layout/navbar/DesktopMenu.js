@@ -18,6 +18,13 @@ const DesktopMenu = () => {
             <Link href="/register">Register</Link>
           </li>
         )}
+        {user && (
+          <li>
+            <Link href={`/tornadoes/see/${user.UserIdentificator}`}>
+              Tornadoes
+            </Link>
+          </li>
+        )}
         <li>
           <Link href="/protected">Protected</Link>
         </li>
