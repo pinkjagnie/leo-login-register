@@ -47,6 +47,8 @@ const AddTornadoForm = () => {
       console.log("record ", record);
       actions.resetForm();
 
+      window.scrollTo(0, 0); // automatic scroll to top of the page
+
       setMessage("Tornado successfully created!");
 
       const timeout = setTimeout(() => {
@@ -55,7 +57,16 @@ const AddTornadoForm = () => {
       }, 2000);
     } catch (error) {
       console.log(error);
+
+      window.scrollTo(0, 0); // automatic scroll to top of the page
+
       setErrorMsg("Something went wrong! " + error.data.message);
+
+      // clearing the error message
+      const timeout = setTimeout(() => {
+        setErrorMsg("");
+        clearTimeout(timeout);
+      }, 3000);
     }
   };
 
