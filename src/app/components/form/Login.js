@@ -25,10 +25,21 @@ const Login = () => {
 
       actions.resetForm();
 
+      window.scrollTo(0, 0); // automatic scroll to top of the page
+
       router.push("/");
     } catch (error) {
       console.log(error.data.message);
+
+      window.scrollTo(0, 0); // automatic scroll to top of the page
+
       setErrorMsg("Something went wrong. " + error.data.message);
+
+      // clearing the error message
+      const timeout = setTimeout(() => {
+        setErrorMsg("");
+        clearTimeout(timeout);
+      }, 3000);
     }
   };
 
